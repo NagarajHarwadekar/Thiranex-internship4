@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8fa">
+  <meta name="description" content="Atmos — a beautifully simple, live weather dashboard.">
+  <title>Atmos — Weather, with a softer touch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a href="#" class="brand" aria-label="Atmos home">
+      <span class="brand-mark">a<span>°</span></span>
+      <span class="brand-name">atmos<span class="brand-period">.</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#today" class="nav-link active">Today</a>
+      <a href="#forecast" class="nav-link">Forecast</a>
+      <a href="#details" class="nav-link">Conditions</a>
+    </nav>
+
+    <a class="top-date" href="#today">
+      <span class="live-dot"></span>
+      <span id="header-date">Your daily forecast</span>
+    </a>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro reveal" id="today">
+      <div>
+        <p class="eyebrow"><span class="eyebrow-line"></span> YOUR LITTLE WEATHER CORNER</p>
+        <h1>A fresh perspective<br>on <span>the weather.</span></h1>
+        <p class="intro-copy">A little sunshine, a little rain. Here's what's happening outside.</p>
+      </div>
+
+      <form class="search-box" id="search-form" role="search">
+        <span class="search-symbol" aria-hidden="true">⌕</span>
+        <label class="sr-only" for="city-input">Search for a city</label>
+        <input id="city-input" type="search" placeholder="Search any city..." autocomplete="off" required>
+        <button type="submit" class="search-button" aria-label="Search city">
+          <span>Explore</span><span aria-hidden="true">↗</span>
+        </button>
+      </form>
+    </section>
+
+    <div class="status-line" id="status-message" role="status" aria-live="polite">
+      <span class="status-dot"></span>
+      <span>Getting your forecast ready...</span>
+    </div>
+
+    <section class="weather-hero reveal" aria-label="Current weather">
+      <div class="hero-copy">
+        <div class="location-row">
+          <span class="location-pin">⌖</span>
+          <div>
+            <p class="location-label">CURRENTLY IN</p>
+            <h2 id="city-name">Bengaluru</h2>
+            <p class="location-country" id="location-detail">India · Local forecast</p>
+          </div>
+        </div>
+
+        <div class="temperature-block">
+          <p class="weather-description" id="weather-description">A little bit of sunshine</p>
+          <div class="temperature-line">
+            <span id="temperature">--</span><span class="degree">°</span>
+          </div>
+          <p class="feels-line">Feels like <strong id="feels-like">--°</strong></p>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="today-date">
+            <span class="tiny-sun">✳</span>
+            <span id="full-date">Your forecast for today</span>
+          </div>
+          <span class="live-pill"><span></span> LIVE CONDITIONS</span>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="sun-halo"></div>
+        <div class="sun-disc"><span class="sun-face">✦</span></div>
+        <div class="cloud cloud-back"></div>
+        <div class="cloud cloud-front"></div>
+        <span class="sparkle sparkle-one">✳</span>
+        <span class="sparkle sparkle-two">✧</span>
+        <span class="sparkle sparkle-three">·</span>
+        <div class="art-caption"><span>THE SKY, RIGHT NOW</span><span class="caption-line"></span></div>
+      </div>
+    </section>
+
+    <section class="quick-stats" id="details" aria-label="Weather details">
+      <article class="stat-card reveal">
+        <div class="stat-top"><span class="stat-icon pink-icon">↗</span><span class="stat-label">HUMIDITY</span></div>
+        <div class="stat-value"><span id="humidity">--</span><small>%</small></div>
+        <p class="stat-note">Moisture in the air</p>
+        <div class="mini-track"><span id="humidity-bar" style="width: 0%"></span></div>
+      </article>
+
+      <article class="stat-card reveal">
+        <div class="stat-top"><span class="stat-icon peach-icon">〰</span><span class="stat-label">WIND SPEED</span></div>
+        <div class="stat-value"><span id="wind-speed">--</span><small> km/h</small></div>
+        <p class="stat-note" id="wind-note">A gentle breeze</p>
+        <div class="wind-decoration"><span></span><span></span><span></span></div>
+      </article>
+
+      <article class="stat-card reveal">
+        <div class="stat-top"><span class="stat-icon lilac-icon">☼</span><span class="stat-label">UV INDEX</span></div>
+        <div class="stat-value"><span id="uv-index">--</span></div>
+        <p class="stat-note" id="uv-note">Today's UV level</p>
+        <div class="uv-track"><span id="uv-bar" style="width: 0%"></span></div>
+      </article>
+
+      <article class="stat-card reveal">
+        <div class="stat-top"><span class="stat-icon blue-icon">⌁</span><span class="stat-label">PRECIPITATION</span></div>
+        <div class="stat-value"><span id="precipitation">--</span><small> mm</small></div>
+        <p class="stat-note">Current rain amount</p>
+        <div class="rain-decoration"><span>·</span><span>·</span><span>·</span><span>·</span><span>·</span></div>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel hourly-panel reveal" id="hourly">
+        <div class="section-heading">
+          <div><p class="eyebrow">THE NEXT FEW HOURS</p><h2>Hour by hour<span>.</span></h2></div>
+          <span class="section-chip">TODAY</span>
+        </div>
+        <div class="hourly-list" id="hourly-forecast">
+          <p class="loading-copy">Preparing your hourly forecast...</p>
+        </div>
+      </article>
+
+      <article class="panel sun-panel reveal">
+        <div class="section-heading">
+          <div><p class="eyebrow">CHASE THE LIGHT</p><h2>Sunrise & sunset<span>.</span></h2></div>
+          <span class="sun-icon">☼</span>
+        </div>
+        <div class="sun-visual" aria-hidden="true">
+          <div class="sun-arc"></div>
+          <div class="sun-path"></div>
+          <div class="sun-center"></div>
+        </div>
+        <div class="sun-times">
+          <div><span class="sun-time-icon">↗</span><p>SUNRISE</p><strong id="sunrise">--:--</strong></div>
+          <div class="sunset-time"><span class="sun-time-icon">↘</span><p>SUNSET</p><strong id="sunset">--:--</strong></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel forecast-panel reveal" id="forecast">
+      <div class="section-heading forecast-heading">
+        <div><p class="eyebrow">A LITTLE LOOK AHEAD</p><h2>The coming days<span>.</span></h2></div>
+        <p class="muted-heading">Five days, beautifully forecast.</p>
+      </div>
+      <div class="forecast-list" id="daily-forecast">
+        <p class="loading-copy">Preparing your five-day forecast...</p>
+      </div>
+    </section>
+
+    <section class="closing-note reveal">
+      <span class="closing-sparkle">✳</span>
+      <div><h2>Whatever the weather,<br><span>make it a good day.</span></h2><p>A little forecast can make a big difference.</p></div>
+      <a href="#today" class="back-top">Back to top <span>↑</span></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#" class="footer-brand">atmos<span>.</span></a>
+    <p>Made for curious skies. Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>.</p>
+    <span class="developer-credit">Developed by Nagaraj Harwadekar</span>
+  </footer>
+</body>
+</html>
